@@ -685,13 +685,13 @@
   }
 }
 @keyframes roomDrift {
-  0%, 100% { transform: scale(1.025) translate3d(-0.3%, 0.1%, 0); }
-  50% { transform: scale(1.025) translate3d(0.3%, -0.1%, 0); }
+  0%, 100% { transform: scale(1.06) translate3d(-1.5%, 0.5%, 0); }
+  50% { transform: scale(1.06) translate3d(1.5%, -0.5%, 0); }
 }
 @media (prefers-reduced-motion: no-preference) {
   .desktopMode .background,
   .desktopMode .interactionLayer {
-    animation: roomDrift 18s ease-in-out infinite;
+    animation: roomDrift 9s ease-in-out infinite;
     will-change: transform;
   }
 }
