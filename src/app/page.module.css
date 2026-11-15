@@ -1,0 +1,703 @@
+.app {
+  --red: #9e2629;
+  --dark: #482a24;
+  --cream: #fff6e9;
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  color: var(--dark);
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+.background,
+.shade {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.background {
+  background:
+    #a76349 url("/room.png") center / cover no-repeat;
+}
+
+.shade {
+  background: linear-gradient(
+    180deg,
+    rgb(48 24 18 / 28%),
+    rgb(48 24 18 / 8%) 42%,
+    rgb(48 24 18 / 38%)
+  );
+}
+
+.centerScreen {
+  position: relative;
+  display: grid;
+  min-height: 100dvh;
+  place-items: center;
+  padding: 24px;
+}
+
+.lockCard {
+  width: min(100%, 430px);
+  padding: 42px;
+  border: 1px solid rgb(255 255 255 / 75%);
+  border-radius: 26px;
+  background: rgb(255 247 235 / 92%);
+  box-shadow: 0 24px 80px rgb(52 20 13 / 30%);
+  text-align: center;
+  backdrop-filter: blur(18px);
+}
+
+.smallLabel {
+  color: var(--red);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.heart {
+  margin: 18px 0 0;
+  color: var(--red);
+  font-size: 46px;
+  line-height: 1;
+}
+
+.lockCard h1 {
+  margin: 12px 0;
+  font-size: clamp(36px, 8vw, 54px);
+  font-weight: 400;
+}
+
+.intro {
+  margin: 0 auto 28px;
+  color: #82665a;
+  line-height: 1.6;
+}
+
+.fieldLabel {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 15px;
+  text-align: left;
+}
+
+.input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #dac1ae;
+  border-radius: 12px;
+  outline: none;
+  background: #fffaf4;
+  color: var(--dark);
+  font: inherit;
+}
+
+.input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgb(158 38 41 / 13%);
+}
+
+.error {
+  margin: 10px 0 0;
+  color: #a62929;
+  font-size: 14px;
+  text-align: left;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 48px;
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--red);
+  color: white;
+  cursor: pointer;
+  font: inherit;
+}
+
+.lockCard .primaryButton {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.primaryButton:hover {
+  background: #7e1d22;
+}
+
+.primaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.topBar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 24px;
+  background: rgb(255 246 234 / 77%);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 12px;
+  backdrop-filter: blur(16px);
+}
+
+.topBar span {
+  color: #82665a;
+}
+
+.desktop {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: calc(100dvh - 42px);
+  padding: 32px;
+}
+
+.desktopGreeting {
+  color: #fff9f1;
+  text-shadow: 0 2px 12px rgb(47 22 16 / 65%);
+}
+
+.desktopGreeting span {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.desktopGreeting p {
+  margin-top: 8px;
+}
+
+.folderGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 100px);
+  align-content: start;
+  gap: 18px;
+}
+
+.folderButton {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  text-shadow: 0 2px 8px rgb(48 20 12 / 85%);
+}
+
+.folderButton:hover {
+  background: rgb(255 255 255 / 18%);
+}
+
+.folderIcon {
+  display: grid;
+  width: 62px;
+  height: 52px;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 10px 10px 14px 14px;
+  background: linear-gradient(145deg, #e9a395, #ab3733);
+  box-shadow: 0 6px 16px rgb(50 20 10 / 25%);
+  color: #fff5e8;
+  font-size: 28px;
+  text-shadow: none;
+}
+
+.dock {
+  position: fixed;
+  z-index: 2;
+  bottom: 18px;
+  left: 50%;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid rgb(255 255 255 / 50%);
+  border-radius: 20px;
+  background: rgb(255 245 231 / 72%);
+  box-shadow: 0 8px 35px rgb(51 22 14 / 22%);
+  transform: translateX(-50%);
+  backdrop-filter: blur(15px);
+}
+
+.dock button {
+  width: 45px;
+  height: 45px;
+  border: 0;
+  border-radius: 13px;
+  background: #a83f38;
+  color: #fff4e5;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.dock button:hover {
+  transform: translateY(-3px);
+}
+
+.overlay {
+  position: fixed;
+  z-index: 5;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgb(40 20 16 / 45%);
+}
+
+.window {
+  width: min(100%, 760px);
+  max-height: min(80dvh, 720px);
+  overflow: auto;
+  border: 1px solid rgb(255 255 255 / 80%);
+  border-radius: 22px;
+  background: #fff7ec;
+  box-shadow: 0 24px 80px rgb(36 15 12 / 35%);
+}
+
+.windowBar {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  display: grid;
+  grid-template-columns: 32px 1fr 32px;
+  align-items: center;
+  min-height: 54px;
+  padding: 0 16px;
+  border-bottom: 1px solid #ead9c9;
+  background: #f6e7d8;
+  text-align: center;
+}
+
+.windowBar h2,
+.windowBar span {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.closeButton {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: #bd5149;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.windowContent {
+  padding: 28px;
+}
+
+.sectionHint {
+  margin: 0 0 20px;
+  color: #856d61;
+  line-height: 1.5;
+}
+
+.eventGrid,
+.notesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.eventCard {
+  display: grid;
+  gap: 8px;
+  padding: 10px 10px 14px;
+  border: 1px solid #efdfcf;
+  border-radius: 14px;
+  background: #fffdfa;
+  color: var(--dark);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.eventCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgb(86 45 32 / 12%);
+}
+
+.eventCard small {
+  color: #98796b;
+}
+
+.eventImage,
+.eventHero {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background-color: #e8d1c0;
+  background-position: center;
+  background-size: cover;
+  color: rgb(255 255 255 / 70%);
+}
+
+.eventImage {
+  aspect-ratio: 4 / 3;
+  border-radius: 9px;
+  font-size: 36px;
+}
+
+.eventImage span,
+.eventHero span {
+  text-shadow: 0 2px 12px rgb(60 24 20 / 40%);
+}
+
+.note {
+  min-height: 180px;
+  padding: 25px;
+  border: 1px solid #edd5bd;
+  border-radius: 4px;
+  background: #fffaf1;
+  box-shadow: 0 5px 16px rgb(80 45 28 / 8%);
+}
+
+.noteHeart {
+  color: var(--red);
+  font-size: 24px;
+}
+
+.note h3 {
+  margin: 12px 0;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.note p,
+.eventText p {
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+
+.letter {
+  max-width: 520px;
+  min-height: 260px;
+  margin: auto;
+}
+
+.signature {
+  display: block;
+  margin-top: 30px;
+  color: var(--red);
+  text-align: right;
+}
+
+.quiz {
+  max-width: 480px;
+  margin: auto;
+  padding: 10px 0;
+}
+
+.quiz h3 {
+  margin: 16px 0 24px;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.answers {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.answer {
+  padding: 14px;
+  border: 1px solid #e4d0c0;
+  border-radius: 10px;
+  background: #fffdf9;
+  color: var(--dark);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.answerSelected {
+  border-color: var(--red);
+  background: #fbe8e2;
+}
+
+.eventOverlay {
+  z-index: 6;
+}
+
+.eventModal {
+  width: min(100%, 640px);
+}
+
+.eventHero {
+  min-height: 260px;
+  aspect-ratio: 16 / 9;
+  font-size: 60px;
+}
+
+.eventText {
+  padding: 28px;
+}
+
+.eventText h2 {
+  margin: 12px 0;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+@media (max-width: 600px) {
+  .lockCard {
+    padding: 32px 24px;
+  }
+
+  .topBar {
+    padding: 13px 16px;
+  }
+
+  .topBar span {
+    display: none;
+  }
+
+  .desktop {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 32px 20px 110px;
+  }
+
+  .desktopGreeting {
+    margin-top: 14px;
+  }
+
+  .folderGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+    margin-top: 12px;
+  }
+
+  .folderButton {
+    padding: 6px 2px;
+    font-size: 13px;
+  }
+
+  .folderIcon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+  }
+
+  .overlay {
+    align-items: end;
+    padding: 0;
+  }
+
+  .window {
+    max-height: 88dvh;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .windowContent {
+    padding: 20px;
+  }
+
+  .eventGrid {
+    gap: 10px;
+  }
+
+  .notesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .eventHero {
+    min-height: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .folderButton,
+  .dock button,
+  .eventCard,
+  .primaryButton {
+    transition:
+      transform 180ms ease,
+      background 180ms ease,
+      box-shadow 180ms ease;
+  }
+}
+/* A quiet, blurred first impression before the room comes into focus. */
+.background {
+  inset: -24px;
+  transform: scale(1.04) translate(var(--pointer-x, 0px), var(--pointer-y, 0px));
+  transition: filter 1s ease, transform 900ms ease;
+  will-change: transform, filter;
+}
+.introMode .background { filter: blur(42px) saturate(1.25); transform: scale(1.18); }
+.introMode .shade { background: linear-gradient(140deg, rgb(38 19 18 / 30%), rgb(80 30 26 / 20%), rgb(31 19 21 / 50%)); }
+.centerScreen { color: #fffaf2; }
+.lockCard {
+  width: min(100%, 390px);
+  padding: 24px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  text-shadow: 0 2px 20px rgb(31 14 12 / 35%);
+}
+.lockCard h1 {
+  margin: 18px 0 14px;
+  color: white;
+  font-family: 'Snell Roundhand', 'Apple Chancery', 'Segoe Script', Georgia, cursive;
+  font-size: clamp(52px, 11vw, 82px);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.04em;
+  line-height: 1.1;
+}
+.lockCard .smallLabel { color: rgb(255 250 242 / 75%); }
+.lockCard .intro { color: rgb(255 250 242 / 84%); }
+.lockCard .fieldLabel { text-align: center; color: #fffaf2; }
+.lockCard .input {
+  border: 1px solid rgb(255 255 255 / 48%);
+  background: rgb(255 255 255 / 18%);
+  color: white;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+.lockCard .input::placeholder { color: rgb(255 255 255 / 68%); }
+.lockCard .input:focus { border-color: white; box-shadow: 0 0 0 3px rgb(255 255 255 / 22%); }
+.lockCard .error { color: #fff2e9; text-align: center; }
+.lockCard .primaryButton {
+  width: auto;
+  min-width: 160px;
+  border: 1px solid rgb(255 255 255 / 50%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 20%);
+  backdrop-filter: blur(10px);
+}
+.lockCard .primaryButton:hover { background: rgb(255 255 255 / 32%); }
+.photoNote, .letter { overflow: hidden; padding: 0; border-radius: 12px; }
+.notePhoto { min-height: 190px; aspect-ratio: 16 / 10; background: #e8d1c0 center / cover no-repeat; }
+.noteBody { padding: 22px 25px 26px; }
+.quiz {
+  max-width: 600px;
+  min-height: 430px;
+  padding: clamp(24px, 5vw, 40px);
+  border-radius: 16px;
+  background-position: center;
+  background-size: cover;
+  color: white;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 30%);
+}
+.quiz .smallLabel { color: #ffe3d1; }
+.quiz .answer { border-color: rgb(255 255 255 / 45%); background: rgb(255 249 241 / 92%); text-shadow: none; }
+.quiz .answerSelected { border-color: #e98f7e; background: #ffddd2; box-shadow: 0 0 0 2px #e98f7e; }
+.quiz .primaryButton { text-shadow: none; }
+@keyframes screenEnter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes windowEnter { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes roomGlow { 0%, 100% { opacity: .25; } 50% { opacity: .55; } }
+@media (prefers-reduced-motion: no-preference) {
+  .centerScreen, .desktopMode .topBar, .desktopMode .desktop, .quiz { animation: screenEnter 700ms ease both; }
+  .window { animation: windowEnter 320ms ease both; }
+  .desktopMode .shade::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 55% 20%, rgb(255 183 91 / 14%), transparent 55%); animation: roomGlow 9s ease-in-out infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .background { transition: none; transform: scale(1.04); }
+  .introMode .background { transform: scale(1.18); }
+}
+
+@media (max-width: 600px) {
+  .background { background-image: url("/room-mobile.png"); background-position: center center; }
+}
+.resultOverlay { z-index: 8; }
+.resultCard { width: min(100%, 440px); padding: 42px 32px; border: 1px solid #fff9f0; border-radius: 26px; background: linear-gradient(155deg, #fffaf2, #f8e4d4); box-shadow: 0 30px 80px rgb(42 18 14 / 40%); color: #482a24; text-align: center; }
+.resultSparkle { display: block; margin-bottom: 20px; color: #b03c38; font-size: 32px; letter-spacing: .2em; }
+.resultEyebrow { color: #9e2629; font-size: 10px; font-weight: 700; letter-spacing: .18em; }
+.resultCard h2 { margin: 14px 0; font-size: clamp(28px, 6vw, 36px); }
+.resultCard p { line-height: 1.65; }
+.resultActions { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 24px; }
+.resultClose { padding: 10px; border: 0; background: transparent; color: #8e3c36; cursor: pointer; font: inherit; }
+@media (prefers-reduced-motion: no-preference) { .resultCard { animation: windowEnter 400ms ease both; } }
+@media (max-width: 600px) { .resultOverlay { align-items: center; padding: 22px; } .resultCard { padding: 34px 24px; } }
+
+.interactionLayer { position: fixed; z-index: 2; inset: -24px; transform: scale(1.04) translate(var(--pointer-x, 0px), var(--pointer-y, 0px)); transition: transform 900ms ease; pointer-events: none; }
+.roomCanvas { position: absolute; top: 50%; left: 50%; width: max(100%, (100dvh + 48px) * 1672 / 941); height: max(100%, (100vw + 48px) * 941 / 1672); transform: translate(-50%, -50%); pointer-events: none; }
+.roomHotspot { position: absolute; pointer-events: auto; cursor: pointer; border: 1px solid transparent; border-radius: 50%; background: transparent; }
+.roomHotspot:hover, .roomHotspot:focus-visible { border-color: rgb(255 244 218 / 75%); box-shadow: 0 0 22px rgb(255 223 175 / 55%); outline: none; }
+.catHotspot { left: 3%; top: 67%; width: 17%; height: 15%; }
+.recordHotspot { left: 7%; top: 57%; width: 13%; height: 12%; }
+.letterHotspot { left: 55%; top: 86%; width: 10%; height: 10%; border-radius: 12px; }
+.catPatch { position: absolute; inset: 0; background: url('/room.png') center / 100% 100% no-repeat; clip-path: ellipse(9% 7% at 11% 73%); transform-origin: 11% 76%; animation: catStretch 1.15s ease-in-out both; pointer-events: none; }
+@keyframes catStretch { 0%, 100% { transform: scale(1); } 35% { transform: scale(1.045, .96); } 65% { transform: scale(1.06, 1.035); } }
+.desktop { pointer-events: none; }
+.folderGrid { pointer-events: auto; }
+.topBar { z-index: 3; }
+.musicNotice { position: fixed; z-index: 9; left: 50%; bottom: 100px; transform: translateX(-50%); width: max-content; max-width: 90%; padding: 12px 16px; border-radius: 14px; background: #fff6e9; color: #482a24; box-shadow: 0 6px 25px #2c171377; font-size: 13px; }
+.musicNotice button { border: 0; background: transparent; color: inherit; cursor: pointer; margin-left: 8px; font-size: 18px; }
+@media (max-width: 600px) {
+ .roomCanvas { width: max(100%, (100dvh + 48px) * 941 / 1672); height: max(100%, (100vw + 48px) * 1672 / 941); }
+ .catHotspot { left: 2%; top: 66%; width: 22%; height: 7%; }
+ .recordHotspot { left: 2%; top: 59%; width: 19%; height: 8%; }
+ .letterHotspot { left: 53%; top: 72%; width: 16%; height: 6%; }
+ .catPatch { background-image: url('/room-mobile.png'); clip-path: ellipse(11% 4% at 13% 69.5%); transform-origin: 13% 71%; }
+}
+@media (prefers-reduced-motion: reduce) { .interactionLayer { transform: scale(1.04); transition: none; } .catPatch { animation-duration: .01ms; } }
+
+.roomHotspot:hover { border-color: transparent; box-shadow: none; }
+.roomHotspot:focus-visible { outline: 2px solid #fff3dc; outline-offset: 3px; }
+.background { transform: none; transition: filter 1s ease, transform 1s ease; }
+.interactionLayer { transform: none; transition: none; }
+.recordHotspot { left: 47.5%; top: 36.5%; width: 7.5%; height: 12%; border-radius: 8px; }
+.catHeart { position: absolute; left: 13%; top: 66%; color: #ee7776; font-size: clamp(24px, 3vw, 42px); text-shadow: 0 2px 10px #6d2926aa; pointer-events: none; animation: heartFloat 1.5s ease-out forwards; }
+@keyframes heartFloat { 0% { opacity: 0; transform: translateY(8px) scale(.6); } 20% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-55px) scale(1.15); } }
+@media (min-width: 601px) {
+  .background { inset: 0; background-size: contain; background-color: #391c17; }
+  .interactionLayer { inset: 0; }
+  .roomCanvas { width: min(100vw, 100dvh * 1672 / 941); height: auto; aspect-ratio: 1672 / 941; }
+  .dock { left: 20px; transform: none; }
+}
+@media (max-width: 600px) {
+ .recordHotspot { left: 28.5%; top: 44%; width: 10%; height: 7%; border-radius: 8px; }
+ .catHeart { left: 15%; top: 64%; }
+}
+@media (prefers-reduced-motion: reduce) { .background, .interactionLayer { transform: none; } .catHeart { animation-duration: .01ms; } }
+
+/* Keep the artwork and its interactive targets on the same moving plane. */
+@media (min-width: 601px) {
+  .background { background-size: cover; }
+  .roomCanvas {
+    width: max(100vw, calc(100dvh * 1672 / 941));
+    height: auto;
+    aspect-ratio: 1672 / 941;
+  }
+}
+@keyframes roomDrift {
+  0%, 100% { transform: scale(1.025) translate3d(-0.3%, 0.1%, 0); }
+  50% { transform: scale(1.025) translate3d(0.3%, -0.1%, 0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .desktopMode .background,
+  .desktopMode .interactionLayer {
+    animation: roomDrift 18s ease-in-out infinite;
+    will-change: transform;
+  }
+}
+
+/* Let each photo retain its natural proportions and fade into the paper. */
+.notePhoto { position: relative; min-height: 0; aspect-ratio: auto; background: #fffaf1; overflow: hidden; }
+.notePhoto img { display: block; width: 100%; height: auto; }
+.notePhoto::after { content: ''; position: absolute; inset: auto 0 0; height: clamp(42px, 16%, 110px); background: linear-gradient(to bottom, transparent, #fffaf1); backdrop-filter: blur(5px); -webkit-mask-image: linear-gradient(to bottom, transparent, black); mask-image: linear-gradient(to bottom, transparent, black); pointer-events: none; }
+.noteBody { position: relative; }
